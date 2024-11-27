@@ -1,0 +1,95 @@
+Statements
+
+KPI's requirements
+The HR department is responsible for monitoring and managing various aspects of employee data to ensure the organization 
+maintains a healthy workforce. However, there is lack of clear performance indicators to track and analyze HR metrics. 
+Therefore, there is need to design and implement a set of KPIs to address the following points:
+
+1. Employee Count
+The HR department lacks visibility into the total number of employees, making it challenging to assess workforce size
+and plan for future growth or downsizing effectively
+
+2. Attrition Count
+The organization lacks a standardized method to track employee attrition, resulting in incomplete and unreliable data
+on the number of employees who have left the organization
+
+3. Attrition Rate
+Without a clear measure of attriton rate, the organization can not assess the overall turnover level or compare it with 
+industry benchmarks, hindering the ability to gauge employee satisfaction and engagement
+
+4. Active Employees
+The organization lacks mechanism to differentiate between active and inactive employees, leading to difficulties in 
+accurately assessing the current workflow's productivity and capacity
+
+5. Average Age
+The HR department lacks visibility into the average age of employees, making it difficult to evaluate worforce demographics a
+succesion planning, and the organization's ability to attract and retain younger talents.
+
+CHART's requirements
+
+1. Attrition by Gender
+The HR department faces challenges in understanfing the attrition patterns based on gender, making it difficult to identify
+any gender-based disparities and implement targeted retention strategies
+
+2. Department-wise Attrition
+The HR department lacks visualization to showcase attrition rates across different departments. This hinders their ability
+to identify departments with higher attrition rates and address any underlying issues or concerns effectively.
+
+3. Number of Employess by Age Group
+The HR department requires visual representation to analyze the distribution of employees across various age groups. This
+helps in assessing workforce demographics, identifying any age-related gaps or imbalances, implementing targeted HR 
+policies or programs.
+
+4. Job Satisfaction Ratings
+The HR department lacks visualization to represent job satisfaction ratings, hindering their ability to measure employee 
+engagement and overall job satisfaction levels effectively.
+
+5. Education Field-wise Attrition
+The HR department requires visual representation to analyze attrition rates based on education fields. This helps identify
+specific educational backgrounds that may be associated with higher attrition, enabling the organization to tailor 
+retention strategies accordingly.
+
+6. Attrition Rate by Gender for Different Age Groups
+The HR department lacks visualization that display attrition rates based on gender and different age groups. This makes
+it challenging to identify any age and gender-related attrition trends, preventing the organization from implementing 
+targeted retention strategies for specific employee segments.
+
+
+First we will start w/ Tableau....
+
+ 1. We are going to analyze KPI. Here we need to create calculated fields for each 5 requirements
+ 
+ 2. Connect to Excel file and find connection between Attrition and Employee Count
+ 
+ 3.  Create a calculated field (Attrition Count)
+	# IF [Attrition] = 'Yes' THEN 1 ELSE 0 END
+	# Filter column: Educated
+	# Change format of numbers to zero
+	# Make 'Education' - Apply to worksheets - Choose All using this Source	
+ 4. Create a lolipop chart to attrition patterns based on gender
+	# Choose gender from tables as ROWS
+	# Choose Attrition Count from tables as COLUMNS
+	Press Ctrl + slide to make another Attrition Count
+ 5. Start working on dashboard side by side (name HR Analytics Dashboard)
+ 6. Create another sheet for Department wise Attrition
+	# Department as color and change Marks to Pie
+	# Sum of Attrition Count as Labels and Angle
+ 7. Another sheet for Number of Employee by Age Group
+	# Create a new parameter Bin Size
+	# Drag Age as a COLUMN, Sum of Employee Count as ROW
+ 8. Job satisfaction Ratings sheet
+	# ROWS: Job Role, sum of Employee Count, COLUMNS: Job satisfaction(Dimensions)
+	# Color: employee count
+ 9. Employee Field wise Attrition
+	# ROWS: Education Field, COLUMNS: Sum of Attrition count
+ 10. Attrtion Rate by Gender for Age Groups
+	# Columns: Age Band, Rows: Create a new aggregation like MIN(1) X 2times
+	# Color: Gender, ANGLE AND LABEL: sum of Attrition Count
+
+At the end of dashboard create filter of EDUCATION on the top right corner
+	
+Second, we are going to work on SQL
+	# Open PgAdmin4 and create a database named 'hrdata_db'.
+	# Create a table within it by writing the column headers
+	# Import the raw file 'hrdata.csv'
+	# Write the queries for the KPI and CHART requirements that are mentioned above
